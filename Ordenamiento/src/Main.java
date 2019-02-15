@@ -11,9 +11,12 @@ public class Main {
         String menu = "" +
                 "Ingrese una opción:\n" +
                 "0.Salir\n" +
-                "1.Generar Nuevo Vector\n" +
-                "2.Ordenar por Shellsort\n" +
+                "1.Generar nuevo vector\n" +
+                "2.Ordenar por shellsort\n" +
                 "3.Ordenar por quicksort\n" +
+                "4.Ordenar por radixSort\n" +
+                "5.Ordenar por bucketSort\n" +
+                "6.Ordenar por mergeShort\n" +
                 "";
         int option;
         LocalDateTime after;
@@ -31,24 +34,45 @@ public class Main {
                     showVector(vector);
                     break;
                 case 2:
-                    after = LocalDateTime.now();
                     showVector(vector);
+                    after = LocalDateTime.now();
                     vector = Ordenar.shellsort(vector);
                     showTime(after);
+                    showVector(vector);
                     break;
                 case 3:
-                    after = LocalDateTime.now();
                     showVector(vector);
-                    vector = Ordenar.quicksort(vector);
+                    after = LocalDateTime.now();
+                    vector = Ordenar.quicksort(vector,0,vector.length-1);
                     showTime(after);
+                    showVector(vector);
+                    break;
+                case 4:
+                    showVector(vector);
+                    after = LocalDateTime.now();
+                    vector = Ordenar.radixSort(vector);
+                    showTime(after);
+                    showVector(vector);
+                    break;
+                case 5:
+                    showVector(vector);
+                    after = LocalDateTime.now();
+                    vector = Ordenar.bucketSort(vector);
+                    showTime(after);
+                    showVector(vector);
+                    break;
+                case 6:
+                    showVector(vector);
+                    after = LocalDateTime.now();
+                    vector = Ordenar.mergeShort(vector);
+                    showTime(after);
+                    showVector(vector);
                     break;
                 default:
                     JOptionPane.showMessageDialog(null, String.format("Opción %d%n no valida\nIntente de nuevo", option), "Opción no valida", JOptionPane.WARNING_MESSAGE);
                     break;
             }
         } while (flag);
-
-        System.out.println("Hello World!");
     }
 
     private static void showTime(LocalDateTime after) {
@@ -56,7 +80,13 @@ public class Main {
     }
 
     private static void showVector(int[] vector) {
-        JOptionPane.showMessageDialog(null, vector.toString(), "Vector", JOptionPane.DEFAULT_OPTION);
+        String view = "Vector:\n";
+        int size = vector.length < 80 ? vector.length : 80;
+        for (int i = 0; i < size; i += 3) {
+            view += vector[i] + "   " + vector[i + 1] + "    " + vector[i + 2] + "\n";
+        }
+        view += "...";
+        JOptionPane.showMessageDialog(null, view, "Vector", JOptionPane.DEFAULT_OPTION);
     }
 
     private static int getOption(String message, String title) {
@@ -66,10 +96,11 @@ public class Main {
                 String ingresado = JOptionPane.showInputDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
                 option = Integer.parseInt(ingresado);
                 break;
-            } catch (NullPointerException e) {
-                option = 0;
-                break;
             } catch (Exception e) {
+                if ("null".equals(e.getMessage())) {
+                    option = 0;
+                    break;
+                }
                 JOptionPane.showMessageDialog(null, "Debe ingresar un número entero", "Valor no valido", JOptionPane.ERROR_MESSAGE);
             }
         } while (true);
@@ -79,7 +110,7 @@ public class Main {
     private static int[] generateVectorRamdon(int size) {
         int[] vector = new int[size];
         for (int i = 0; i < size; i++) {
-            vector[i] = (int) Math.random() * (1 - Integer.MAX_VALUE) + Integer.MAX_VALUE;
+            vector[i] = (int) (Math.random() * (Integer.MAX_VALUE-1) )+ 1;
         }
         return vector;
     }
