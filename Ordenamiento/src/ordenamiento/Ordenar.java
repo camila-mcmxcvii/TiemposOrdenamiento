@@ -41,23 +41,23 @@ public class Ordenar {
     }
 
     public static int[] radixSort(int[] vector) {
-        int x,j,i;
-        for(x=Integer.SIZE-1;x>0;x++){
-        int auxiliar[]=new int [vector.length];
-        j=0;
-        for(i=0;i<vector.length;i++){
-            boolean mover= vector[i] << x >= 0;
-            if(x==0 ? !mover:mover){
-                auxiliar[j]=vector[i];
-                j++;
-            }else{
-                vector[i-j]=vector[i];
+        int x, j, i;
+        for (x = Integer.SIZE - 1; x > 0; x--) {
+            int auxiliar[] = new int[vector.length];
+            j = 0;
+            for (i = 0; i < vector.length; i++) {
+                boolean mover = vector[i] << x >= 0;
+                if (x == 0 ? !mover : mover) {
+                    auxiliar[j] = vector[i];
+                    j++;
+                } else {
+                    vector[i - j] = vector[i];
+                }
             }
-        }
-        for(i=j; i<auxiliar.length;i++){
-            auxiliar[i]=vector[i-j];
-        }
-        vector=auxiliar;
+            for (i = j; i < auxiliar.length; i++) {
+                auxiliar[i] = vector[i - j];
+            }
+            vector = auxiliar;
         }
         System.out.println("El Vector Ordenado con radixSort: ");
         return vector;
