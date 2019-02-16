@@ -1,6 +1,8 @@
 package ordenamiento;
 
 public class Ordenar {
+    public final static int MAX_VALUE = 99999;
+
     public static int[] shellsort(int[] vector) {
         int size = vector.length;
         for (int grap = size / 2; grap > 0; grap /= 2) {
@@ -65,7 +67,19 @@ public class Ordenar {
 
 
     public static int[] bucketSort(int[] vector) {
-
+        int[] bucket = new int[MAX_VALUE + 1];
+        for (int i = 0; i < bucket.length; i++) {
+            bucket[i] = 0;
+        }
+        for (int i = 0; i < vector.length; i++) {
+            bucket[vector[i]]++;
+        }
+        int outPos = vector.length - 1;
+        for (int i = 0; i < bucket.length; i++) {
+            if (bucket[i] == 1) {
+                vector[outPos--] = i;
+            }
+        }
         return vector;
     }
 

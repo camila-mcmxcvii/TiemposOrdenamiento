@@ -43,7 +43,7 @@ public class Main {
                 case 3:
                     showVector(vector);
                     after = LocalDateTime.now();
-                    vector = Ordenar.quicksort(vector,0,vector.length-1);
+                    vector = Ordenar.quicksort(vector, 0, vector.length - 1);
                     showTime(after);
                     showVector(vector);
                     break;
@@ -110,7 +110,7 @@ public class Main {
     private static int[] generateVectorRamdon(int size) {
         int[] vector = new int[size];
         for (int i = 0; i < size; i++) {
-            vector[i] = (int) (Math.random() * (Integer.MAX_VALUE-1) )+ 1;
+            vector[i] = (int) (Math.random() * (Ordenar.MAX_VALUE - 1)) + 1;
         }
         return vector;
     }
