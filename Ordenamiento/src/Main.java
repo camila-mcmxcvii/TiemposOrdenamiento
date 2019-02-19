@@ -7,7 +7,8 @@ import java.time.temporal.ChronoUnit;
 public class Main {
 
     public static void main(String[] args) {
-        int[] vector = generateVectorRamdon(9999);
+        int[] vector = generateVectorRamdon(Ordenar.MAX_VALUE);
+        int[] respuesta;
         String menu = "" +
                 "Ingrese una opción:\n" +
                 "0.Salir\n" +
@@ -30,46 +31,46 @@ public class Main {
                     break;
                 case 1:
                     int size = getOption("Ingrese el tamaño del vector", "Ingrese");
-                    vector = generateVectorRamdon(size);
-                    showVector(vector);
+                    respuesta = generateVectorRamdon(size);
+                    showVector(respuesta);
                     break;
                 case 2:
                     showVector(vector);
                     after = LocalDateTime.now();
-                    vector = Ordenar.shellsort(vector);
+                    respuesta = Ordenar.shellsort(vector);
                     showTime(after);
-                    showVector(vector);
+                    showVector(respuesta);
                     break;
                 case 3:
                     showVector(vector);
                     after = LocalDateTime.now();
-                    vector = Ordenar.quicksort(vector, 0, vector.length - 1);
+                    respuesta = Ordenar.quicksort(vector, 0, vector.length - 1);
                     showTime(after);
-                    showVector(vector);
+                    showVector(respuesta);
                     break;
                 case 4:
                     showVector(vector);
                     after = LocalDateTime.now();
-                    vector = Ordenar.radixSort(vector);
+                    respuesta = Ordenar.radixSort(vector);
                     showTime(after);
-                    showVector(vector);
+                    showVector(respuesta);
                     break;
                 case 5:
                     showVector(vector);
                     after = LocalDateTime.now();
-                    vector = Ordenar.bucketSort(vector);
+                    respuesta = Ordenar.bucketSort(vector);
                     showTime(after);
-                    showVector(vector);
+                    showVector(respuesta);
                     break;
                 case 6:
                     showVector(vector);
                     after = LocalDateTime.now();
-                    vector = Ordenar.mergeShort(vector);
+                    respuesta = Ordenar.mergeShort(vector);
                     showTime(after);
-                    showVector(vector);
+                    showVector(respuesta);
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, String.format("Opción %d%n no valida\nIntente de nuevo", option), "Opción no valida", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(null, String.format("Opción %d no valida\nIntente de nuevo", option), "Opción no valida", JOptionPane.WARNING_MESSAGE);
                     break;
             }
         } while (flag);
@@ -95,6 +96,10 @@ public class Main {
             try {
                 String ingresado = JOptionPane.showInputDialog(null, message, title, JOptionPane.DEFAULT_OPTION);
                 option = Integer.parseInt(ingresado);
+                if (Ordenar.MAX_VALUE < option) {
+                    JOptionPane.showMessageDialog(null, String.format("Debe ingresar un número inferior a %d", Ordenar.MAX_VALUE), "Valor no valido", JOptionPane.ERROR_MESSAGE);
+                    continue;
+                }
                 break;
             } catch (Exception e) {
                 if ("null".equals(e.getMessage())) {

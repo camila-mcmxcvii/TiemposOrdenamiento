@@ -1,7 +1,7 @@
 package ordenamiento;
 
 public class Ordenar {
-    public final static int MAX_VALUE = 99999;
+    public final static int MAX_VALUE = 9999;
 
     public static int[] shellsort(int[] vector) {
         int size = vector.length;
@@ -67,7 +67,24 @@ public class Ordenar {
 
 
     public static int[] bucketSort(int[] vector) {
-        int[] bucket = new int[MAX_VALUE + 1];
+        int [] bucket=new int[MAX_VALUE+1];
+
+        for (int i=0; i<bucket.length; i++) {
+            bucket[i]=0;
+        }
+
+        for (int i=0; i<vector.length; i++) {
+            bucket[vector[i]]++;
+        }
+
+        int outPos=0;
+        for (int i=0; i<bucket.length; i++) {
+            for (int j=0; j<bucket[i]; j++) {
+                vector[outPos++]=i;
+            }
+        }
+        return bucket;
+        /*int[] bucket = new int[MAX_VALUE + 1];
         for (int i = 0; i < bucket.length; i++) {
             bucket[i] = 0;
         }
@@ -79,8 +96,7 @@ public class Ordenar {
             if (bucket[i] == 1) {
                 vector[outPos--] = i;
             }
-        }
-        return vector;
+        }*/
     }
 
     public static int[] mergeShort(int[] vector) {
