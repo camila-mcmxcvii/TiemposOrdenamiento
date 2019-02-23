@@ -67,7 +67,7 @@ public class Ordenar {
 
 
     public static int[] bucketSort(int[] vector) {
-        int [] bucket=new int[MAX_VALUE+1];
+        int [] bucket=new int[MAX_VALUE];
 
         for (int i=0; i<bucket.length; i++) {
             bucket[i]=0;
@@ -83,20 +83,7 @@ public class Ordenar {
                 vector[outPos++]=i;
             }
         }
-        return bucket;
-        /*int[] bucket = new int[MAX_VALUE + 1];
-        for (int i = 0; i < bucket.length; i++) {
-            bucket[i] = 0;
-        }
-        for (int i = 0; i < vector.length; i++) {
-            bucket[vector[i]]++;
-        }
-        int outPos = vector.length - 1;
-        for (int i = 0; i < bucket.length; i++) {
-            if (bucket[i] == 1) {
-                vector[outPos--] = i;
-            }
-        }*/
+        return vector;
     }
 
     public static int[] mergeShort(int[] vector) {

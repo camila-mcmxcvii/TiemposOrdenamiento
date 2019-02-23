@@ -31,8 +31,8 @@ public class Main {
                     break;
                 case 1:
                     int size = getOption("Ingrese el tamaño del vector", "Ingrese");
-                    respuesta = generateVectorRamdon(size);
-                    showVector(respuesta);
+                    vector = generateVectorRamdon(size);
+                    showVector(vector);
                     break;
                 case 2:
                     showVector(vector);
@@ -82,12 +82,12 @@ public class Main {
 
     private static void showVector(int[] vector) {
         String view = "Vector:\n";
-        int size = vector.length < 80 ? vector.length : 80;
+        int size =  vector.length;
         for (int i = 0; i < size; i += 3) {
             view += vector[i] + "   " + vector[i + 1] + "    " + vector[i + 2] + "\n";
         }
         view += "...";
-        JOptionPane.showMessageDialog(null, view, "Vector", JOptionPane.DEFAULT_OPTION);
+        showLongTextMessageInDialog(view);
     }
 
     private static int getOption(String message, String title) {
@@ -118,5 +118,13 @@ public class Main {
             vector[i] = (int) (Math.random() * (Ordenar.MAX_VALUE - 1)) + 1;
         }
         return vector;
+    }
+
+    public static void showLongTextMessageInDialog(String longMessage) {
+        JTextArea textArea = new JTextArea(16, 20);
+        textArea.setText(longMessage);
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        JOptionPane.showMessageDialog(null, scrollPane);
     }
 }
