@@ -1,7 +1,7 @@
 package ordenamiento;
 
 public class Ordenar {
-    public final static int MAX_VALUE = 9999;
+    public final static int MAX_VALUE = 9999999;
 
     public static int[] shellsort(int[] vector) {
         int size = vector.length;

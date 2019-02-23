@@ -77,12 +77,12 @@ public class Main {
     }
 
     private static void showTime(LocalDateTime after) {
-        JOptionPane.showMessageDialog(null, after.until(LocalDateTime.now(), ChronoUnit.MICROS), "Duración en microsegundos", JOptionPane.DEFAULT_OPTION);
+        JOptionPane.showMessageDialog(null, after.until(LocalDateTime.now(), ChronoUnit.NANOS), "Duración en nanosegundos", JOptionPane.DEFAULT_OPTION);
     }
 
     private static void showVector(int[] vector) {
         String view = "Vector:\n";
-        int size =  vector.length;
+        int size =  vector.length<80 ?  vector.length : 80;
         for (int i = 0; i < size; i += 3) {
             view += vector[i] + "   " + vector[i + 1] + "    " + vector[i + 2] + "\n";
         }
