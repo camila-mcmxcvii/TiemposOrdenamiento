@@ -15,6 +15,7 @@ public class Ordenar {
                 vector[j] = temp;
             }
         }
+        System.out.print("El vector ordenado con shellsort: ");
         return vector;
     }
 
@@ -61,7 +62,7 @@ public class Ordenar {
             }
             vector = auxiliar;
         }
-        System.out.println("El Vector Ordenado con radixSort: ");
+        System.out.print("El vector ordenado con radixSort: ");
         return vector;
     }
 
@@ -83,11 +84,13 @@ public class Ordenar {
                 vector[outPos++]=i;
             }
         }
+        System.out.print("El vector ordenado con bucketSort: ");
         return vector;
     }
 
     public static int[] mergeShort(int[] vector) {
         sort(vector, 0, vector.length - 1);
+        System.out.print("El vector ordenado con mergeShort: ");
         return vector;
     }
 

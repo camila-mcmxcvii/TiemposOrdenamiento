@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         int[] vector = generateVectorRamdon(Ordenar.MAX_VALUE);
+        int[] copia;
         int[] respuesta;
         String menu = "" +
                 "Ingrese una opción:\n" +
@@ -22,7 +23,6 @@ public class Main {
         int option;
         LocalDateTime after;
         boolean flag = true;
-        showVector(vector);
         do {
             option = getOption(menu, "MENU");
             switch (option) {
@@ -32,40 +32,45 @@ public class Main {
                 case 1:
                     int size = getOption("Ingrese el tamaño del vector", "Ingrese");
                     vector = generateVectorRamdon(size);
-                    showVector(vector);
                     break;
                 case 2:
                     showVector(vector);
+                    copia = vector.clone();
                     after = LocalDateTime.now();
-                    respuesta = Ordenar.shellsort(vector);
+                    respuesta = Ordenar.shellsort(copia);
                     showTime(after);
                     showVector(respuesta);
                     break;
                 case 3:
                     showVector(vector);
+                    copia = vector.clone();
+                    System.out.print("El vector ordenado con quicksort: ");
                     after = LocalDateTime.now();
-                    respuesta = Ordenar.quicksort(vector, 0, vector.length - 1);
+                    respuesta = Ordenar.quicksort(copia, 0, copia.length - 1);
                     showTime(after);
                     showVector(respuesta);
                     break;
                 case 4:
                     showVector(vector);
+                    copia = vector.clone();
                     after = LocalDateTime.now();
-                    respuesta = Ordenar.radixSort(vector);
+                    respuesta = Ordenar.radixSort(copia);
                     showTime(after);
                     showVector(respuesta);
                     break;
                 case 5:
                     showVector(vector);
+                    copia = vector.clone();
                     after = LocalDateTime.now();
-                    respuesta = Ordenar.bucketSort(vector);
+                    respuesta = Ordenar.bucketSort(copia);
                     showTime(after);
                     showVector(respuesta);
                     break;
                 case 6:
                     showVector(vector);
+                    copia = vector.clone();
                     after = LocalDateTime.now();
-                    respuesta = Ordenar.mergeShort(vector);
+                    respuesta = Ordenar.mergeShort(copia);
                     showTime(after);
                     showVector(respuesta);
                     break;
@@ -77,12 +82,14 @@ public class Main {
     }
 
     private static void showTime(LocalDateTime after) {
-        JOptionPane.showMessageDialog(null, after.until(LocalDateTime.now(), ChronoUnit.NANOS), "Duración en nanosegundos", JOptionPane.DEFAULT_OPTION);
+        long duracion = after.until(LocalDateTime.now(), ChronoUnit.NANOS);
+        JOptionPane.showMessageDialog(null, duracion, "Duración en nanosegundos", JOptionPane.DEFAULT_OPTION);
+        System.out.println(duracion + "\n");
     }
 
     private static void showVector(int[] vector) {
         String view = "Vector:\n";
-        int size =  vector.length<80 ?  vector.length : 80;
+        int size = vector.length < 80 ? vector.length : 80;
         for (int i = 0; i < size; i += 3) {
             view += vector[i] + "   " + vector[i + 1] + "    " + vector[i + 2] + "\n";
         }
