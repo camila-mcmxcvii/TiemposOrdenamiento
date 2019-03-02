@@ -32,6 +32,9 @@ public class Main {
                 case 1:
                     int size = getOption("Ingrese el tamaño del vector", "Ingrese");
                     vector = generateVectorRamdon(size);
+                    System.out.println("_________________________________");
+                    System.out.println("_________Cambio el vector________");
+                    System.out.println("_________________________________");
                     break;
                 case 2:
                     showVector(vector);
@@ -84,7 +87,8 @@ public class Main {
     private static void showTime(LocalDateTime after) {
         long duracion = after.until(LocalDateTime.now(), ChronoUnit.NANOS);
         JOptionPane.showMessageDialog(null, duracion, "Duración en nanosegundos", JOptionPane.DEFAULT_OPTION);
-        System.out.println(duracion + "\n");
+        System.out.println(duracion + " duración en nanosegundos.\n");
+
     }
 
     private static void showVector(int[] vector) {
